@@ -2,7 +2,7 @@ import { HeaderClient } from "../../components";
 import { SearchBar } from "../../components/SearchBar";
 import { CatalogCard } from "../../components/CatalogCard";
 import { ButtonNextPage } from "../../components/ButtonNextPage";
-
+import './styles.css'
 export const Catalog = () => {
   return (
     <>
