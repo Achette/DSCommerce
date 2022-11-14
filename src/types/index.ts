@@ -8,3 +8,8 @@ export type ProductProps = {
   category1: string;
   category2: string;
 };
+
+export type CatalogCardProps = {
+  price: number;
+  name: string;
+};
