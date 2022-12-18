@@ -14,7 +14,7 @@ export const ProductCard = ({ product }: ProductDetailsCardProps) => {
         <h4>{product.name}</h4>
         <p>{product.description}</p>
         <div className="dsc-category-container">
-          {product.categories.map((item, index) => (
+          {product.categories.map((item) => (
             <CategoryCard key={item.id} title={item.name} />
           ))}
         </div>
