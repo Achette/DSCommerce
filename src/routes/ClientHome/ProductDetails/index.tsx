@@ -21,7 +21,7 @@ export const ProductDetails = () => {
           {product && <ProductCard product={product} />}
           <div className="dsc-btn-page-container">
             <ButtonPrimary title={"Comprar"} />
-            <ButtonInverse title={"Início"} />
+            <ButtonInverse title={"Início"}/>
           </div>
         </section>
       </main>

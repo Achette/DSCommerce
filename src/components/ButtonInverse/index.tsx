@@ -1,7 +1,11 @@
+import { Link } from "react-router-dom";
 import { Props } from "../../types";
-import './styles.css'
+import "./styles.css";
 
 export const ButtonInverse = ({ title }: Props) => {
-    
-  return <div className="dsc-btn dsc-btn-white">{title}</div>;
+  return (
+    <Link to={`/`}>
+      <button className="dsc-btn dsc-btn-white">{title}</button>
+    </Link>
+  );
 };
