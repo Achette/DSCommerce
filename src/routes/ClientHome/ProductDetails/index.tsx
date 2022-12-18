@@ -2,7 +2,7 @@ import "./styles.css";
 import { ButtonInverse, ButtonPrimary, ProductCard } from "../../../components";
 import { ProductDTOProps } from "../../../types";
 
-const product: ProductDTOProps = {
+export const product: ProductDTOProps = {
   id: 2,
   name: "Smart TV FHD",
   description: "Eleita a melhor TV do ano!",

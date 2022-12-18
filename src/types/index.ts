@@ -21,6 +21,5 @@ export type categoryDTOProps = {
 };
 
 export type CatalogCardProps = {
-  price: number;
-  name: string;
+ product: ProductDTOProps
 };

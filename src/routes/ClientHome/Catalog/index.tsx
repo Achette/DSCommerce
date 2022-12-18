@@ -2,6 +2,7 @@ import { SearchBar } from "../../../components/SearchBar";
 import { CatalogCard } from "../../../components/CatalogCard";
 import { ButtonNextPage } from "../../../components/ButtonNextPage";
 import "./styles.css";
+import { products as Products } from "../../../services/product-service";
 
 export const Catalog = () => {
   return (
@@ -10,15 +11,9 @@ export const Catalog = () => {
         <SearchBar />
 
         <div className="dsc-catalog-cards dsc-mb20 dsc-mt20">
-          <CatalogCard price={5000.0} name={"Computador Gamer XT"} />
-          <CatalogCard price={5000.0} name={"Computador Gamer XT"} />
-          <CatalogCard price={5000.0} name={"Computador Gamer XT"} />
-          <CatalogCard price={5000.0} name={"Computador Gamer XT"} />
-          <CatalogCard price={5000.0} name={"Computador Gamer XT"} />
-          <CatalogCard price={5000.0} name={"Computador Gamer XT"} />
-          <CatalogCard price={5000.0} name={"Computador Gamer XT"} />
-          <CatalogCard price={5000.0} name={"Computador Gamer XT"} />
-          <CatalogCard price={5000.0} name={"Computador Gamer XT"} />
+          {Products.map((product) => (
+            <CatalogCard key={product.id} product={product} />
+          ))}
         </div>
 
         <ButtonNextPage title={"Carregar mais"} />
