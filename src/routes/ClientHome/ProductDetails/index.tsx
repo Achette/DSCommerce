@@ -3,6 +3,8 @@ import { ButtonInverse, ButtonPrimary, ProductCard } from "../../../components";
 import { ProductDTOProps } from "../../../types";
 import { products } from "../../../services/product-service";
 import { useParams } from "react-router-dom";
+import React from "react";
+import axios from "axios";
 
 export const ProductDetails = () => {
   // Lê o parametro de rota
@@ -11,8 +13,23 @@ export const ProductDetails = () => {
   const findById = (id: number): ProductDTOProps | undefined => {
     return products.find((x) => x.id === id);
   };
-                                  //apelido DEFINIDO NA ROTA
-  const product = findById(Number(params.productId));
+
+  const [product, setProduct] = React.useState<ProductDTOProps>()
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const prod = await axios
+        .get<ProductDTOProps>(
+          `http://localhost:8080/products/${Number(params.productId)}`
+        )
+        .then((response) => response.data);
+
+        console.log(prod)
+      setProduct(prod);
+    };
+
+    fetchData();
+  }, [params.productId]);
 
   return (
     <div>
@@ -21,7 +38,7 @@ export const ProductDetails = () => {
           {product && <ProductCard product={product} />}
           <div className="dsc-btn-page-container">
             <ButtonPrimary title={"Comprar"} />
-            <ButtonInverse title={"Início"}/>
+            <ButtonInverse title={"Início"} />
           </div>
         </section>
       </main>
