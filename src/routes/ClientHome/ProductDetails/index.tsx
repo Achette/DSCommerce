@@ -1,30 +1,24 @@
 import "./styles.css";
 import { ButtonInverse, ButtonPrimary, ProductCard } from "../../../components";
 import { ProductDTOProps } from "../../../types";
-import { products } from "../../../services/product-service";
 import { useParams } from "react-router-dom";
 import React from "react";
-import axios from "axios";
+import { ApiProducts } from "../../../services/api";
 
 export const ProductDetails = () => {
   // Lê o parametro de rota
   const params = useParams();
 
-  const findById = (id: number): ProductDTOProps | undefined => {
+  /*   const findById = (id: number): ProductDTOProps | undefined => {
     return products.find((x) => x.id === id);
-  };
+  }; */
 
-  const [product, setProduct] = React.useState<ProductDTOProps>()
+  const [product, setProduct] = React.useState<ProductDTOProps>();
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const prod = await axios
-        .get<ProductDTOProps>(
-          `http://localhost:8080/products/${Number(params.productId)}`
-        )
-        .then((response) => response.data);
+      const prod = await ApiProducts.getById(Number(params.productId));
 
-        console.log(prod)
       setProduct(prod);
     };
 
