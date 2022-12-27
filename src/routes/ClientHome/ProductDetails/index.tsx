@@ -1,13 +1,14 @@
 import "./styles.css";
 import { ButtonInverse, ButtonPrimary, ProductCard } from "../../../components";
 import { ProductDTOProps } from "../../../types";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import React from "react";
 import { ApiProducts } from "../../../services/api";
 
 export const ProductDetails = () => {
   // Lê o parametro de rota
   const params = useParams();
+  const navigate = useNavigate();
 
   /*   const findById = (id: number): ProductDTOProps | undefined => {
     return products.find((x) => x.id === id);
@@ -16,14 +17,12 @@ export const ProductDetails = () => {
   const [product, setProduct] = React.useState<ProductDTOProps>();
 
   React.useEffect(() => {
-    const fetchData = async () => {
-      const prod = await ApiProducts.getById(Number(params.productId));
-
-      setProduct(prod);
-    };
-
-    fetchData();
-  }, [params.productId]);
+    ApiProducts.getById(Number(params.productId))
+      .then((response) => setProduct(response))
+      .catch((error) => {
+        navigate(`/`);
+      });
+  }, [navigate, params.productId]);
 
   return (
     <div>
