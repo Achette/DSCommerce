@@ -21,5 +21,5 @@ export type categoryDTOProps = {
 };
 
 export type CatalogCardProps = {
- product: ProductDTOProps
+  product: ProductDTOProps;
 };

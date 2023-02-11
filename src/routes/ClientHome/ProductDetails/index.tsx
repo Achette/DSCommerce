@@ -4,6 +4,7 @@ import { ProductDTOProps } from "../../../types";
 import { useNavigate, useParams } from "react-router-dom";
 import React from "react";
 import { ApiProducts } from "../../../services/api";
+import * as cartService from "../../../services/cart-services";
 
 export const ProductDetails = () => {
   // Lê o parametro de rota
@@ -24,13 +25,22 @@ export const ProductDetails = () => {
       });
   }, [navigate, params.productId]);
 
+  const handleBuyClick = () => {
+    if (product) {
+      cartService.addProduct(product);
+      navigate("/cart");
+    }
+  };
+
   return (
     <div>
       <main>
         <section id="product-details-section" className="dsc-container">
           {product && <ProductCard product={product} />}
           <div className="dsc-btn-page-container">
-            <ButtonPrimary title={"Comprar"} />
+            <div onClick={handleBuyClick}>
+              <ButtonPrimary title={"Comprar"} />
+            </div>
             <ButtonInverse title={"Início"} />
           </div>
         </section>

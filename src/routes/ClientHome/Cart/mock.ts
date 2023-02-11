@@ -1,4 +1,22 @@
-export const cart = {
+import { OrderItemDTO } from "../../../models/order";
+
+export const item1 = new OrderItemDTO(
+  4,
+  1,
+  "Pc Gamer",
+  1200,
+  "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/4-big.jpg"
+);
+
+export const item2 = new OrderItemDTO(
+  5,
+  2,
+  "Rails for Dummies",
+  100.99,
+  "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/5-big.jpg"
+);
+
+/* export const cart: OrderDTO = {
   items: [
     {
       productId: 4,
@@ -17,4 +35,4 @@ export const cart = {
         "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/5-big.jpg",
     },
   ],
-};
+}; */
