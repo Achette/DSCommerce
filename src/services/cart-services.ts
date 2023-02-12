@@ -31,7 +31,7 @@ export const increaseItem = (productId: number) => {
   const item = cart.items.find((x) => x.productId === productId);
   if (item) {
     item.quantity++;
-    cartRepository.save(cart)
+    cartRepository.save(cart);
   }
 };
 
@@ -40,6 +40,8 @@ export const decreaseItem = (productId: number) => {
   const item = cart.items.find((x) => x.productId === productId);
   if (item) {
     item.quantity--;
-    cartRepository.save(cart)
+    if (item.quantity < 1)
+      cart.items = cart.items.filter((x) => x.productId !== item.productId);
+    cartRepository.save(cart);
   }
 };
