@@ -25,3 +25,21 @@ export const addProduct = (product: ProductDTOProps) => {
     cartRepository.save(cart);
   }
 };
+
+export const increaseItem = (productId: number) => {
+  const cart = cartRepository.get();
+  const item = cart.items.find((x) => x.productId === productId);
+  if (item) {
+    item.quantity++;
+    cartRepository.save(cart)
+  }
+};
+
+export const decreaseItem = (productId: number) => {
+  const cart = cartRepository.get();
+  const item = cart.items.find((x) => x.productId === productId);
+  if (item) {
+    item.quantity--;
+    cartRepository.save(cart)
+  }
+};
