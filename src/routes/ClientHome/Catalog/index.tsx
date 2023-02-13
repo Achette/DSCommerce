@@ -3,30 +3,30 @@ import { CatalogCard } from "../../../components/CatalogCard";
 import { ButtonNextPage } from "../../../components/ButtonNextPage";
 import "./styles.css";
 import React from "react";
-import { ProductDTOProps } from "../../../types";
+import { ProductDTOProps, QueryParams } from "../../../types";
 import { ApiProducts } from "../../../services/api";
 
 export const Catalog = () => {
   const [products, setProducts] = React.useState<ProductDTOProps[]>([]);
-  const [searchTerm, setSearchTerm] = React.useState("");
-  console.log("term:", searchTerm);
+  const [queryParams, setQueryParams] = React.useState<QueryParams>({page: 0, term: ""});
+
 
   const fetchData = React.useCallback(async () => {
     try {
-      const prods = await ApiProducts.getAll(0, searchTerm);
+      const prods = await ApiProducts.getAll(queryParams.page, queryParams.term);
 
       setProducts(prods.data.content);
     } catch (e) {
       alert("Erro ao fazer requisição");
     }
-  }, [searchTerm, setProducts]);
+  }, [queryParams, setProducts]);
 
   React.useEffect(() => {
     fetchData();
   }, [fetchData]);
 
-  const handleSearchProduct = (term: string) => {
-    setSearchTerm(term);
+  const handleSearchProduct = (SearchTerm: string) => {
+    setQueryParams({ ...queryParams, term: SearchTerm });
   };
 
   return (

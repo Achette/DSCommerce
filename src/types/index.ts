@@ -25,5 +25,10 @@ export type CatalogCardProps = {
 };
 
 export type SearchProps = {
-  onSearch: (value: string) => void
-}
+  onSearch: (value: string) => void;
+};
+
+export type QueryParams = {
+  page: number;
+  term: string;
+};
