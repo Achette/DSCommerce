@@ -1,10 +1,22 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { BASE_URL } from "../constants/system";
 
 export const ApiProducts = {
-  getAll: async () => {
-    const response = await axios.get(`${BASE_URL}/products?size=12`);
-    return response.data.content;
+  getAll: async (page: number, name: string, size = 12, sort = "name") => {
+    const config: AxiosRequestConfig = {
+      method: "GET",
+      baseURL: BASE_URL,
+      url: "/products",
+      params: {
+        page,
+        name,
+        size,
+        sort,
+      },
+    };
+
+    //const response = await axios.get(`${BASE_URL}/products?`);
+    return axios(config);
   },
 
   getById: async (id: number) => {

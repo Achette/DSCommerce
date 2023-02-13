@@ -23,3 +23,7 @@ export type categoryDTOProps = {
 export type CatalogCardProps = {
   product: ProductDTOProps;
 };
+
+export type SearchProps = {
+  onSearch: (value: string) => void
+}
