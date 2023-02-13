@@ -8,14 +8,23 @@ import { ApiProducts } from "../../../services/api";
 
 export const Catalog = () => {
   const [products, setProducts] = React.useState<ProductDTOProps[]>([]);
-  const [queryParams, setQueryParams] = React.useState<QueryParams>({page: 0, term: ""});
-
+  const [queryParams, setQueryParams] = React.useState<QueryParams>({
+    page: 0,
+    term: "",
+  });
+  const [isLastPage, setIsLastPage] = React.useState(false);
 
   const fetchData = React.useCallback(async () => {
     try {
-      const prods = await ApiProducts.getAll(queryParams.page, queryParams.term);
+      const response = await ApiProducts.getAll(
+        queryParams.page,
+        queryParams.term
+      );
 
-      setProducts(prods.data.content);
+      const loadMoreProducts = response.data.content;
+      setProducts(products.concat(loadMoreProducts));
+      setIsLastPage(response.data.last);
+
     } catch (e) {
       alert("Erro ao fazer requisição");
     }
@@ -26,7 +35,12 @@ export const Catalog = () => {
   }, [fetchData]);
 
   const handleSearchProduct = (SearchTerm: string) => {
-    setQueryParams({ ...queryParams, term: SearchTerm });
+    setProducts([]);
+    setQueryParams({ ...queryParams, page: 0, term: SearchTerm });
+  };
+
+  const handleLoadMore = () => {
+    setQueryParams({ ...queryParams, page: queryParams.page + 1 });
   };
 
   return (
@@ -40,7 +54,11 @@ export const Catalog = () => {
           ))}
         </div>
 
-        <ButtonNextPage title={"Carregar mais"} />
+        {!isLastPage && (
+          <div onClick={handleLoadMore}>
+            <ButtonNextPage title={"Carregar mais"} />
+          </div>
+        )}
       </section>
     </main>
   );
