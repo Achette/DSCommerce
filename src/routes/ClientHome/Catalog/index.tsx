@@ -28,7 +28,7 @@ export const Catalog = () => {
     } catch (e) {
       alert("Erro ao fazer requisição");
     }
-  }, [queryParams, setProducts]);
+  }, [queryParams, setProducts, setIsLastPage]);
 
   React.useEffect(() => {
     fetchData();
