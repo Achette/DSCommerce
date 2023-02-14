@@ -32,3 +32,8 @@ export type QueryParams = {
   page: number;
   term: string;
 };
+
+export type ContextCartCountType = {
+  contextCartCount: number;
+  setContextCartCount: (cartCount: number) => void;
+};

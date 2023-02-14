@@ -5,11 +5,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import React from "react";
 import { ApiProducts } from "../../../services/api";
 import * as cartService from "../../../services/cart-services";
+import { ContextCartCount } from "../../../utils/context-cart";
 
 export const ProductDetails = () => {
   // Lê o parametro de rota
   const params = useParams();
   const navigate = useNavigate();
+
+  const { setContextCartCount } = React.useContext(ContextCartCount);
 
   /*   const findById = (id: number): ProductDTOProps | undefined => {
     return products.find((x) => x.id === id);
@@ -28,6 +31,7 @@ export const ProductDetails = () => {
   const handleBuyClick = () => {
     if (product) {
       cartService.addProduct(product);
+      setContextCartCount(cartService.getCart().items.length);
       navigate("/cart");
     }
   };
