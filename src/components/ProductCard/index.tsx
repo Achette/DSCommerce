@@ -7,7 +7,7 @@ export const ProductCard = ({ product }: ProductDetailsCardProps) => {
   return (
     <div className="dsc-card dsc-mb20">
       <div className="dsc-product-details-top dsc-line-bottom">
-        <img src={product.imgUrl} alt="Computador" />
+        <img src={product.imgUrl} alt={product.name} />
       </div>
       <div className="dsc-product-details-bottom">
         <h3>R$ {product.price.toFixed(2).replace(".", ",")}</h3>
