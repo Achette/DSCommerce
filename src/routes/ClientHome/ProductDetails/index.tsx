@@ -1,16 +1,17 @@
-import "./styles.css";
+import React from "react";
 import { ButtonInverse, ButtonPrimary, ProductCard } from "../../../components";
 import { ProductDTOProps } from "../../../types";
 import { useNavigate, useParams } from "react-router-dom";
-import React from "react";
-import { ApiProducts } from "../../../services/api";
-import * as cartService from "../../../services/cart-services";
+import { ApiProducts } from "../../../services/api-products";
 import { ContextCartCount } from "../../../utils/context-cart";
+import * as cartService from "../../../services/cart-services";
+import "./styles.css";
 
 export const ProductDetails = () => {
   // Lê o parametro de rota
   const params = useParams();
   const navigate = useNavigate();
+  const { productId } = params;
 
   const { setContextCartCount } = React.useContext(ContextCartCount);
 
@@ -21,12 +22,12 @@ export const ProductDetails = () => {
   const [product, setProduct] = React.useState<ProductDTOProps>();
 
   React.useEffect(() => {
-    ApiProducts.getById(Number(params.productId))
+    ApiProducts.getById(Number(productId))
       .then((response) => setProduct(response))
       .catch((error) => {
         navigate(`/`);
       });
-  }, [navigate, params.productId]);
+  }, [navigate, productId]);
 
   const handleBuyClick = () => {
     if (product) {
