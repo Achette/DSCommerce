@@ -16,3 +16,9 @@ export function get(): OrderDTO {
   });
   return cart;
 }
+
+// função para limpar o localStorage
+
+export function clear() {
+  localStorage.setItem(CART_KEY, '{"items": []}')
+}
