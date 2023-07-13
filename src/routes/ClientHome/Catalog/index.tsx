@@ -1,10 +1,10 @@
+import React from "react";
 import { SearchBar } from "../../../components/SearchBar";
 import { CatalogCard } from "../../../components/CatalogCard";
 import { ButtonNextPage } from "../../../components/ButtonNextPage";
-import "./styles.css";
-import React from "react";
 import { ProductDTOProps, QueryParams } from "../../../types";
-import { ApiProducts } from "../../../services/api";
+import { ApiProducts } from "../../../services/api-products";
+import "./styles.css";
 
 export const Catalog = () => {
   const [products, setProducts] = React.useState<ProductDTOProps[]>([]);
@@ -22,13 +22,16 @@ export const Catalog = () => {
       );
 
       const loadMoreProducts = response.data.content;
+
       setProducts(products.concat(loadMoreProducts));
       setIsLastPage(response.data.last);
 
     } catch (e) {
       alert("Erro ao fazer requisição");
     }
-  }, [queryParams.page, queryParams.term, products]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [queryParams.page, queryParams.term, setProducts, setIsLastPage]);
 
   React.useEffect(() => {
     fetchData();
