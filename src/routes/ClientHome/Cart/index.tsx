@@ -1,9 +1,9 @@
-import "./styles.css";
 import React from "react";
-import { OrderDTO } from "../../../models/order";
-import * as cartService from "../../../services/cart-services";
 import { Link } from "react-router-dom";
+import { OrderDTO } from "../../../models/order";
 import { ContextCartCount } from "../../../utils/context-cart";
+import * as cartService from "../../../services/cart-services";
+import "./styles.css";
 
 export const Cart = () => {
   const [cart, setCart] = React.useState<OrderDTO>(cartService.getCart());
