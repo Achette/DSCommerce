@@ -1,9 +1,9 @@
 import React from "react";
-import { ButtonInverse, ButtonPrimary, ProductCard } from "../../../components";
 import { ProductDTOProps } from "../../../types";
 import { useNavigate, useParams } from "react-router-dom";
 import { ApiProducts } from "../../../services/api-products";
 import { ContextCartCount } from "../../../utils/context-cart";
+import { ButtonInverse, ButtonPrimary, ProductCard } from "../../../components";
 import * as cartService from "../../../services/cart-services";
 import "./styles.css";
 
@@ -25,6 +25,7 @@ export const ProductDetails = () => {
     ApiProducts.getById(Number(productId))
       .then((response) => setProduct(response))
       .catch((error) => {
+        window.alert("Produto não encontrado!");
         navigate(`/`);
       });
   }, [navigate, productId]);
