@@ -9,6 +9,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 export default function App() {
   const [contextCartCount, setContextCartCount] = React.useState<number>(0);
+  
 
   return (
     <ContextCartCount.Provider
