@@ -1,10 +1,11 @@
 import React from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { ClientHome } from "./routes/ClientHome";
 import { Cart } from "./routes/ClientHome/Cart";
+import { ClientHome } from "./routes/ClientHome";
+import { Login } from "./routes/ClientHome/Login";
 import { Catalog } from "./routes/ClientHome/Catalog";
-import { ProductDetails } from "./routes/ClientHome/ProductDetails";
 import { ContextCartCount } from "./utils/context-cart";
+import { ProductDetails } from "./routes/ClientHome/ProductDetails";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 export default function App() {
   const [contextCartCount, setContextCartCount] = React.useState<number>(0);
@@ -23,6 +24,7 @@ export default function App() {
               element={<ProductDetails />}
             />
             <Route path="cart" element={<Cart />} />
+            <Route path="login" element={<Login />} />
           </Route>
           <Route path="*" element={<Navigate to={`/`} />} />
         </Routes>
