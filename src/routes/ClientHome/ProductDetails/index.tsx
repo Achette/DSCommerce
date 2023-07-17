@@ -23,7 +23,7 @@ export const ProductDetails = () => {
 
   React.useEffect(() => {
     ApiProducts.getById(Number(productId))
-      .then((response) => setProduct(response))
+      .then((response) => setProduct(response.data))
       .catch((error) => {
         window.alert("Produto não encontrado!");
         navigate(`/`);
