@@ -1,10 +1,11 @@
-import { getAccessToken } from './auth-service'
 import { requestBackend } from '../utils/requests'
+import { AxiosRequestConfig } from 'axios'
 
 export const findMe = async () => {
-  const headers = {
-    Authorization: 'Bearer ' + getAccessToken(),
+  const config: AxiosRequestConfig = {
+    url: '/users/me',
+    withCredentials: true,
   }
 
-  return requestBackend({ url: `/users/me`, headers })
+  return requestBackend(config)
 }
