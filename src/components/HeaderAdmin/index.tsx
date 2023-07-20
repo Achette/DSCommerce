@@ -1,4 +1,6 @@
 import './styles.css'
+import home from '../../assets/img/home.svg'
+import products from '../../assets/img/products.svg'
 
 export const HeaderAdmin = () => {
   return (
@@ -8,11 +10,11 @@ export const HeaderAdmin = () => {
         <div className="dsc-navbar-right">
           <div className="dsc-menu-items-container">
             <div className="dsc-menu-item">
-              <img src="images/home.svg" alt="Início" />
+              <img src={home} alt="Início" />
               <p>Início</p>
             </div>
             <div className="dsc-menu-item">
-              <img src="images/products.svg" alt="Cadastro de produtos" />
+              <img src={products} alt="Cadastro de produtos" />
               <p className="dsc-menu-item-active">Produtos</p>
             </div>
           </div>
