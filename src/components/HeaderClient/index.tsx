@@ -1,6 +1,6 @@
-import "./styles.css";
-import { Link } from "react-router-dom";
-import { CartIcon } from "../CartIcon";
+import './styles.css'
+import { Link } from 'react-router-dom'
+import { CartIcon } from '../CartIcon'
 
 export const HeaderClient = () => {
   return (
@@ -21,5 +21,5 @@ export const HeaderClient = () => {
         </div>
       </nav>
     </header>
-  );
-};
+  )
+}

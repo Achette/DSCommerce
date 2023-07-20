@@ -1,19 +1,19 @@
-import React from "react";
-import { SearchProps } from "../../types";
-import "./styles.css";
+import React from 'react'
+import { SearchProps } from '../../types'
+import './styles.css'
 
 export const SearchBar = ({ onSearch }: SearchProps) => {
-  const [term, setTerm] = React.useState("");
+  const [term, setTerm] = React.useState('')
 
   const handleGetSearchTerm = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onSearch(term);
-  };
+    e.preventDefault()
+    onSearch(term)
+  }
 
   const handleResetClick = () => {
-    setTerm("");
-    onSearch(term);
-  };
+    setTerm('')
+    onSearch(term)
+  }
 
   return (
     <form className="dsc-search-bar" onSubmit={(e) => handleGetSearchTerm(e)}>
@@ -26,5 +26,5 @@ export const SearchBar = ({ onSearch }: SearchProps) => {
       />
       <button onClick={handleResetClick}>🗙</button>
     </form>
-  );
-};
+  )
+}

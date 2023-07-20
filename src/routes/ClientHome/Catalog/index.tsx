@@ -1,50 +1,49 @@
-import React from "react";
-import { SearchBar } from "../../../components/SearchBar";
-import { CatalogCard } from "../../../components/CatalogCard";
-import { ButtonNextPage } from "../../../components/ButtonNextPage";
-import { ProductDTOProps, QueryParams } from "../../../types";
-import { ApiProducts } from "../../../services/api-products";
-import "./styles.css";
+import React from 'react'
+import { SearchBar } from '../../../components/SearchBar'
+import { CatalogCard } from '../../../components/CatalogCard'
+import { ButtonNextPage } from '../../../components/ButtonNextPage'
+import { ProductDTOProps, QueryParams } from '../../../types'
+import { ApiProducts } from '../../../services/api-products'
+import './styles.css'
 
 export const Catalog = () => {
-  const [products, setProducts] = React.useState<ProductDTOProps[]>([]);
+  const [products, setProducts] = React.useState<ProductDTOProps[]>([])
   const [queryParams, setQueryParams] = React.useState<QueryParams>({
     page: 0,
-    term: "",
-  });
-  const [isLastPage, setIsLastPage] = React.useState(false);
+    term: '',
+  })
+  const [isLastPage, setIsLastPage] = React.useState(false)
 
   const fetchData = React.useCallback(async () => {
     try {
       const response = await ApiProducts.getAll(
         queryParams.page,
-        queryParams.term
-      );
+        queryParams.term,
+      )
 
-      const loadMoreProducts = response.data.content;
+      const loadMoreProducts = response.data.content
 
-      setProducts(products.concat(loadMoreProducts));
-      setIsLastPage(response.data.last);
-
+      setProducts(products.concat(loadMoreProducts))
+      setIsLastPage(response.data.last)
     } catch (e) {
-      alert("Erro ao fazer requisição");
+      alert('Erro ao fazer requisição')
     }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [queryParams.page, queryParams.term, setProducts, setIsLastPage]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [queryParams.page, queryParams.term, setProducts, setIsLastPage])
 
   React.useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    fetchData()
+  }, [fetchData])
 
   const handleSearchProduct = (SearchTerm: string) => {
-    setProducts([]);
-    setQueryParams({ ...queryParams, page: 0, term: SearchTerm });
-  };
+    setProducts([])
+    setQueryParams({ ...queryParams, page: 0, term: SearchTerm })
+  }
 
   const handleLoadMore = () => {
-    setQueryParams({ ...queryParams, page: queryParams.page + 1 });
-  };
+    setQueryParams({ ...queryParams, page: queryParams.page + 1 })
+  }
 
   return (
     <main>
@@ -59,10 +58,10 @@ export const Catalog = () => {
 
         {!isLastPage && (
           <div onClick={handleLoadMore}>
-            <ButtonNextPage title={"Carregar mais"} />
+            <ButtonNextPage title={'Carregar mais'} />
           </div>
         )}
       </section>
     </main>
-  );
-};
+  )
+}

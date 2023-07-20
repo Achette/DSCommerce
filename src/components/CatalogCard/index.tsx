@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import { CatalogCardProps } from "../../types";
-import "./styles.css";
+import { Link } from 'react-router-dom'
+import { CatalogCardProps } from '../../types'
+import './styles.css'
 
 export const CatalogCard = ({ product }: CatalogCardProps) => {
   return (
@@ -10,10 +10,10 @@ export const CatalogCard = ({ product }: CatalogCardProps) => {
           <img src={product.imgUrl} alt={product.name} />
         </div>
         <div className="dsc-catalog-card-bottom">
-          <h3>{product.price.toFixed(2).replace(".", ",")}</h3>
+          <h3>{product.price.toFixed(2).replace('.', ',')}</h3>
           <h4>{product.name}</h4>
         </div>
       </div>
     </Link>
-  );
-};
+  )
+}

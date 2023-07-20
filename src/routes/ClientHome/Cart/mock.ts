@@ -1,20 +1,20 @@
-import { OrderItemDTO } from "../../../models/order";
+import { OrderItemDTO } from '../../../models/order'
 
 export const item1 = new OrderItemDTO(
   4,
   1,
-  "Pc Gamer",
+  'Pc Gamer',
   1200,
-  "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/4-big.jpg"
-);
+  'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/4-big.jpg'
+)
 
 export const item2 = new OrderItemDTO(
   5,
   2,
-  "Rails for Dummies",
+  'Rails for Dummies',
   100.99,
-  "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/5-big.jpg"
-);
+  'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/5-big.jpg'
+)
 
 /* export const cart: OrderDTO = {
   items: [

@@ -1,7 +1,7 @@
-import { ProductDetailsCardProps } from "../../types";
-import { CategoryCard } from "../CategoryCard";
+import { ProductDetailsCardProps } from '../../types'
+import { CategoryCard } from '../CategoryCard'
 
-import "./styles.css";
+import './styles.css'
 
 export const ProductCard = ({ product }: ProductDetailsCardProps) => {
   return (
@@ -10,7 +10,7 @@ export const ProductCard = ({ product }: ProductDetailsCardProps) => {
         <img src={product.imgUrl} alt={product.name} />
       </div>
       <div className="dsc-product-details-bottom">
-        <h3>R$ {product.price.toFixed(2).replace(".", ",")}</h3>
+        <h3>R$ {product.price.toFixed(2).replace('.', ',')}</h3>
         <h4>{product.name}</h4>
         <p>{product.description}</p>
         <div className="dsc-category-container">
@@ -20,5 +20,5 @@ export const ProductCard = ({ product }: ProductDetailsCardProps) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

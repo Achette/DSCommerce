@@ -1,12 +1,14 @@
+/* eslint-disable */
+
 export class OrderDTO {
-  id?: number;
-  items: OrderItemDTO[] = [];
+  id?: number
+  items: OrderItemDTO[] = []
   get total(): number {
-    let sum = 0;
+    let sum = 0
     this.items.forEach((item) => {
-      sum += item.subTotal;
-    });
-    return sum;
+      sum += item.subTotal
+    })
+    return sum
   }
 }
 
@@ -19,6 +21,6 @@ export class OrderItemDTO {
     public imgUrl: string
   ) {}
   get subTotal(): number {
-    return this.price * this.quantity;
+    return this.price * this.quantity
   }
 }

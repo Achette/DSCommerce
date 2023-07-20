@@ -1,30 +1,30 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { OrderDTO } from "../../../models/order";
-import { ContextCartCount } from "../../../utils/context-cart";
-import * as cartService from "../../../services/cart-services";
-import "./styles.css";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { OrderDTO } from '../../../models/order'
+import { ContextCartCount } from '../../../utils/context-cart'
+import * as cartService from '../../../services/cart-services'
+import './styles.css'
 
 export const Cart = () => {
-  const [cart, setCart] = React.useState<OrderDTO>(cartService.getCart());
+  const [cart, setCart] = React.useState<OrderDTO>(cartService.getCart())
 
-  const { setContextCartCount } = React.useContext(ContextCartCount);
+  const { setContextCartCount } = React.useContext(ContextCartCount)
 
   const handleIncreaseItem = (id: number) => {
-    cartService.increaseItem(id);
-    updateCart();
-  };
+    cartService.increaseItem(id)
+    updateCart()
+  }
 
   const handleDecreaseItem = (id: number) => {
-    cartService.decreaseItem(id);
-    updateCart();
-  };
+    cartService.decreaseItem(id)
+    updateCart()
+  }
 
   const updateCart = () => {
-    const newCart = cartService.getCart();
-    setCart(newCart);
-    setContextCartCount(newCart.items.length);
-  };
+    const newCart = cartService.getCart()
+    setCart(newCart)
+    setContextCartCount(newCart.items.length)
+  }
 
   return (
     <main>
@@ -80,5 +80,5 @@ export const Cart = () => {
         </div>
       </section>
     </main>
-  );
-};
+  )
+}

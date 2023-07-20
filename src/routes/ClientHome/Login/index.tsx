@@ -1,27 +1,28 @@
-import React from "react";
-import { CredentialsDTO } from "../../../models/auth";
-import * as authService from "../../../services/auth-service";
-import "./styles.css";
+/* eslint-disable */
+import React from 'react'
+import { CredentialsDTO } from '../../../models/auth'
+import * as authService from '../../../services/auth-service'
+import './styles.css'
 
 export const Login = () => {
   const [formData, setFormData] = React.useState<CredentialsDTO>({
-    username: "",
-    password: "",
-  });
+    username: '',
+    password: '',
+  })
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name } = e.target;
-    const { value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    const { name } = e.target
+    const { value } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
     authService
       .loginRequest(formData)
       .then((res) => console.log(res.data))
-      .catch((error) => console.log("erro no login ", error));
-  };
+      .catch((error) => console.error('erro no login ', error))
+  }
 
   return (
     <main>
@@ -62,5 +63,5 @@ export const Login = () => {
         </div>
       </section>
     </main>
-  );
-};
+  )
+}
