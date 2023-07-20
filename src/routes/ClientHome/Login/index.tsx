@@ -20,7 +20,10 @@ export const Login = () => {
     event.preventDefault()
     authService
       .loginRequest(formData)
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        authService.saveAccessToken(res.data.access_token)
+        console.log(res.data)
+      })
       .catch((error) => console.error('erro no login ', error))
   }
 
