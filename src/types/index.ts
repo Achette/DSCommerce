@@ -37,3 +37,9 @@ export type ContextCartCountType = {
   contextCartCount: number
   setContextCartCount: (cartCount: number) => void
 }
+
+export type UserDTO = {
+  id: number
+  name: string
+  email: string
+}
