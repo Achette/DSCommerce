@@ -1,5 +1,6 @@
 import React from 'react'
 import { UserDTO } from '../../../types'
+
 import * as userService from '../../../services/user-service'
 import './styles.css'
 
@@ -7,12 +8,7 @@ export const AdminHome = () => {
   const [user, setUser] = React.useState<UserDTO>()
 
   React.useEffect(() => {
-    userService
-      .findMe()
-      .then((res) => setUser(res.data))
-      .catch((error) => {
-        console.error(error)
-      })
+    userService.findMe().then((res) => setUser(res.data))
   }, [])
 
   return (
