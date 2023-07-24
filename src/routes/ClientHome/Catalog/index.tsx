@@ -3,7 +3,6 @@ import { SearchBar } from '../../../components/SearchBar'
 import { ApiProducts } from '../../../services/api-products'
 import { ProductDTOProps, QueryParams } from '../../../types'
 import { CatalogCard } from '../../../components/CatalogCard'
-import { isAuthenticated } from '../../../services/auth-service'
 import { ButtonNextPage } from '../../../components/ButtonNextPage'
 import './styles.css'
 
@@ -34,7 +33,6 @@ export const Catalog = () => {
   }, [queryParams.page, queryParams.term, setProducts, setIsLastPage])
 
   React.useEffect(() => {
-    console.log(isAuthenticated())
     fetchData()
   }, [fetchData])
 
