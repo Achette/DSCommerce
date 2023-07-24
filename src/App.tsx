@@ -1,6 +1,7 @@
 import React from 'react'
 import { Admin } from './routes/Admin'
 import { history } from './utils/history'
+import { PrivateRoute } from './components'
 import { Cart } from './routes/ClientHome/Cart'
 import { ClientHome } from './routes/ClientHome'
 import { Login } from './routes/ClientHome/Login'
@@ -35,7 +36,14 @@ export default function App() {
             <Route path="cart" element={<Cart />} />
             <Route path="login" element={<Login />} />
           </Route>
-          <Route path="/admin/" element={<Admin />}>
+          <Route
+            path="/admin/"
+            element={
+              <PrivateRoute>
+                <Admin />
+              </PrivateRoute>
+            }
+          >
             <Route index element={<AdminHome />} />
           </Route>
           <Route path="*" element={<Navigate to={`/`} />} />
