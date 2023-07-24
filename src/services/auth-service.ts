@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode'
 import { AxiosRequestConfig } from 'axios'
 import { requestBackend } from '../utils/requests'
 import { CLIENT_ID, CLIENT_SECRET } from '../constants/system'
-import { AccessTokenPayloadDTO, CredentialsDTO } from '../models/auth'
+import { AccessTokenPayloadDTO, CredentialsDTO, RoleEnum } from '../models/auth'
 import * as accessTokenRepository from '../localStorage/access-token-repository'
 
 export const loginRequest = (loginData: CredentialsDTO) => {
@@ -54,4 +54,20 @@ export const isAuthenticated = (): boolean => {
   const tokenPayload = getAccessTokenPayload()
 
   return !!(tokenPayload && tokenPayload.exp * 1000 > Date.now())
+}
+
+export const hasAnyRoles = (roles: RoleEnum[]): boolean => {
+  if (roles.length === 0) return true
+
+  const tokenPayload = getAccessTokenPayload()
+
+  if (tokenPayload !== undefined) {
+    for (let i = 0; i < roles.length; i++) {
+      if (tokenPayload.authorities.includes(roles[i])) return true
+    }
+  }
+
+  // return roles.some(role => tokenData.authorities.inclues(role))
+
+  return false
 }
