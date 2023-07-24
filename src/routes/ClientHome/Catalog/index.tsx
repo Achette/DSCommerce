@@ -1,9 +1,10 @@
 import React from 'react'
 import { SearchBar } from '../../../components/SearchBar'
-import { CatalogCard } from '../../../components/CatalogCard'
-import { ButtonNextPage } from '../../../components/ButtonNextPage'
-import { ProductDTOProps, QueryParams } from '../../../types'
 import { ApiProducts } from '../../../services/api-products'
+import { ProductDTOProps, QueryParams } from '../../../types'
+import { CatalogCard } from '../../../components/CatalogCard'
+import { isAuthenticated } from '../../../services/auth-service'
+import { ButtonNextPage } from '../../../components/ButtonNextPage'
 import './styles.css'
 
 export const Catalog = () => {
@@ -33,6 +34,7 @@ export const Catalog = () => {
   }, [queryParams.page, queryParams.term, setProducts, setIsLastPage])
 
   React.useEffect(() => {
+    console.log(isAuthenticated())
     fetchData()
   }, [fetchData])
 
