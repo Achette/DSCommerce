@@ -22,7 +22,7 @@ export const Login = () => {
       .loginRequest(formData)
       .then((res) => {
         authService.saveAccessToken(res.data.access_token)
-        console.log(res.data)
+        console.log(authService.getAccessTokenPayload()?.user_name)
       })
       .catch((error) => console.error('erro no login ', error))
   }
