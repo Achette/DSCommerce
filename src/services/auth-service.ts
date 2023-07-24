@@ -1,8 +1,9 @@
 import QueryString from 'qs'
+import jwtDecode from 'jwt-decode'
 import { AxiosRequestConfig } from 'axios'
-import { CredentialsDTO } from '../models/auth'
 import { requestBackend } from '../utils/requests'
 import { CLIENT_ID, CLIENT_SECRET } from '../constants/system'
+import { AccessTokenPayloadDTO, CredentialsDTO } from '../models/auth'
 import * as accessTokenRepository from '../localStorage/access-token-repository'
 
 export const loginRequest = (loginData: CredentialsDTO) => {
@@ -36,4 +37,21 @@ export const saveAccessToken = (token: string) => {
 
 export const getAccessToken = () => {
   return accessTokenRepository.getToken()
+}
+
+export const getAccessTokenPayload = (): AccessTokenPayloadDTO | undefined => {
+  try {
+    const token = accessTokenRepository.getToken()
+    return token == null
+      ? undefined
+      : (jwtDecode(token) as AccessTokenPayloadDTO)
+  } catch (error) {
+    return undefined
+  }
+}
+
+export const isAuthenticated = (): boolean => {
+  const tokenPayload = getAccessTokenPayload()
+
+  return !!(tokenPayload && tokenPayload.exp * 1000 > Date.now())
 }
