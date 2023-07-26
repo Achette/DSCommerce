@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { CredentialsDTO } from '../../../models/auth'
 import * as authService from '../../../services/auth-service'
 import './styles.css'
@@ -9,6 +10,8 @@ export const Login = () => {
     username: '',
     password: '',
   })
+
+  const navigate = useNavigate()
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target
@@ -22,7 +25,7 @@ export const Login = () => {
       .loginRequest(formData)
       .then((res) => {
         authService.saveAccessToken(res.data.access_token)
-        console.log(authService.getAccessTokenPayload()?.user_name)
+        navigate('/cart')
       })
       .catch((error) => console.error('erro no login ', error))
   }
